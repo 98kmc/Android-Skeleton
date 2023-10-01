@@ -1,3 +1,4 @@
+@file:Suppress("unused")
 package com.example.jetpack_compose_skeleton.utils.navigator
 
 import androidx.activity.compose.BackHandler
