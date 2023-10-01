@@ -3,44 +3,29 @@ package com.example.jetpack_compose_skeleton
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.LaunchedEffect
 import com.example.jetpack_compose_skeleton.ui.theme.JetpackComposeSkeletonTheme
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var app: App
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeSkeletonTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+
+                app = this.application as App
+                app.navigator.Host {
+                    app.didStart = false
+                    app.startModule = AppTransition.Splash
+                    finish()
+                }
+
+                LaunchedEffect(key1 = true) {
+                    app.start()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    JetpackComposeSkeletonTheme {
-        Greeting("Android")
     }
 }

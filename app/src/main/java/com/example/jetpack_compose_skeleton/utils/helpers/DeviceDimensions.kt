@@ -1,3 +1,4 @@
+@file:Suppress("unused")
 package com.example.jetpack_compose_skeleton.utils.helpers
 
 import android.content.res.Configuration
